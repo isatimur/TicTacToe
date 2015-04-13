@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <declare-styleable name="CellView">
+        <attr name="xImage" format="reference" />
+        <attr name="oImage" format="reference" />
+        <attr name="mNullImage" format="reference" />
+    </declare-styleable>
+
+</resources>
