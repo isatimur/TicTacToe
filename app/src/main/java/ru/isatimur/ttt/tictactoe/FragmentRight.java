@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 /**
  * Created by souldragon on 10.04.15.
  */
-public class FragmentRight extends Fragment{
+public class FragmentRight extends Fragment {
     public FragmentRight() {
         // Required empty public constructor
     }

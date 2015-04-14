@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +21,13 @@ public class EndGameFragment extends DialogFragment {
     private EndGameListener mListener;
     private String mText;
 
-    public interface EndGameListener {
-        void onNewGame();
-        void onExitGame();
+    public EndGameFragment() {
     }
-    public EndGameFragment(){}
 
     @SuppressLint("ValidFragment")
-    public EndGameFragment(String text){
+    public EndGameFragment(String text) {
         this.mText = text;
     }
-
 
     @Nullable
     @Override
@@ -41,14 +36,14 @@ public class EndGameFragment extends DialogFragment {
         View rootView = inflater.inflate(R.layout.fragment_endgame, container,
                 false);
         getDialog().setTitle("WHO is the winner?");
-        mResultText = (TextView)rootView.findViewById(R.id.textResult);
+        mResultText = (TextView) rootView.findViewById(R.id.textResult);
         mResultText.setText(mText);
-        mNewGame = (Button)rootView.findViewById(R.id.newGame);
-        mExitGame = (Button)rootView.findViewById(R.id.exitGame);
+        mNewGame = (Button) rootView.findViewById(R.id.newGame);
+        mExitGame = (Button) rootView.findViewById(R.id.exitGame);
         mNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mListener!=null){
+                if (mListener != null) {
                     mListener.onNewGame();
                 }
 
@@ -58,7 +53,7 @@ public class EndGameFragment extends DialogFragment {
         mExitGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mListener!=null){
+                if (mListener != null) {
                     mListener.onExitGame();
                 }
             }
@@ -74,5 +69,11 @@ public class EndGameFragment extends DialogFragment {
 
     public void setListener(EndGameListener mListener) {
         this.mListener = mListener;
+    }
+
+    public interface EndGameListener {
+        void onNewGame();
+
+        void onExitGame();
     }
 }

@@ -25,10 +25,8 @@ public class FlipAnimation extends Animation {
     /**
      * Creates a 3D flip animation between two views.
      *
-     * @param fromView
-     *            First view in the transition.
-     * @param toView
-     *            Second view in the transition.
+     * @param fromView First view in the transition.
+     * @param toView   Second view in the transition.
      */
     public FlipAnimation(View fromView, View toView) {
         this.fromView = fromView;
@@ -83,8 +81,8 @@ public class FlipAnimation extends Animation {
             degrees -= 180.f;
             toView.bringToFront();
             //these two lines are necessary to make it work below kitkat
-            ((View)toView.getParent()).requestLayout();
-            ((View)toView.getParent()).invalidate();
+            ((View) toView.getParent()).requestLayout();
+            ((View) toView.getParent()).invalidate();
 
         }
         //return the view back to its original size
