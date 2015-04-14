@@ -50,7 +50,6 @@ public class CellView extends ImageView {
     private void init() {
         setState(CellState.MNULL);
         this.setFocusable(true);
-        this.setEnabled(true);
     }
 
     @Override
