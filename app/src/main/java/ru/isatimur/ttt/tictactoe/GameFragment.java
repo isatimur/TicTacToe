@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 
 /**
@@ -58,7 +58,7 @@ public class GameFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = (LinearLayout) inflater.inflate(R.layout.fragment_game, container, false);
+        View v = (RelativeLayout) inflater.inflate(R.layout.fragment_game, container, false);
         matrix = new CellView[length];
         init(v);
         newGame();
