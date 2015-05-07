@@ -83,4 +83,20 @@
         android:layout_below="@+id/ttt_cell5"
         android:layout_marginTop="-20dp" />
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/ttt_cell0"
+        android:layout_toStartOf="@id/ttt_cell0"
+        android:layout_toEndOf="@id/ttt_cell8"
+        android:layout_alignEnd="@id/ttt_cell8"
+        android:layout_alignTop="@+id/ttt_cell0"
+        android:layout_alignBottom="@+id/ttt_cell8"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+        <ru.isatimur.ttt.tictactoe.CrossLineView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cross_line"/>
+    </FrameLayout>
 </RelativeLayout>

@@ -1,8 +1,9 @@
 package ru.isatimur.ttt.tictactoe;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ public class GameFragment extends Fragment {
     private static final String WINNER_X = "XXX";
     private static final String WINNER_O = "OOO";
     private String winner;
+    private CrossLineView mCrossLineView;
     private boolean isFP = true;
+    View viewContainer;
     private final View.OnClickListener clickOnCell = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -58,11 +61,11 @@ public class GameFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = (RelativeLayout) inflater.inflate(R.layout.fragment_game, container, false);
+        viewContainer = (RelativeLayout) inflater.inflate(R.layout.fragment_game, container, false);
         matrix = new CellView[length];
-        init(v);
+        init(viewContainer);
         newGame();
-        return v;
+        return viewContainer;
     }
 
     private void init(View v) {
@@ -70,37 +73,41 @@ public class GameFragment extends Fragment {
             int id = getResources().getIdentifier("ttt_cell" + i, "id", getActivity().getPackageName());
             matrix[i] = (CellView) v.findViewById(id);
             matrix[i].setOnClickListener(clickOnCell);
+            mCrossLineView = (CrossLineView) v.findViewById(R.id.cross_line);
+            mCrossLineView.setVisibility(View.GONE);
         }
     }
 
     private void newGame() {
         for (int i = 0; i < length; i++) {
             matrix[i].setState(CellView.CellState.MNULL);
+            matrix[i].setEnabled(true);
         }
         isFP = true;
         winner = "Player";
+        mCrossLineView.setVisibility(View.GONE);
     }
 
     private void gameIsOver(String result) {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        final EndGameFragment endGameFragment = new EndGameFragment(result);
-        endGameFragment.setListener(new EndGameFragment.EndGameListener() {
+        for (int i = 0; i < matrix.length; i++) {
+            matrix[i].setEnabled(false);
+        }
+        new AlertDialog.Builder(getActivity()).setInverseBackgroundForced(true)
+                .setTitle(R.string.game_over)
+                .setMessage((winner.contains("X") ? R.string.win_x : ((!winner.contains("O")) ? R.string.win_draw : R.string.win_o)))
+                .setIcon((winner.contains("X") ? R.drawable.x_white : ((!winner.contains("O")) ? R.drawable.mnull_white : R.drawable.o_white)))
+                .setPositiveButton(R.string.new_game, new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onNewGame() {
-                newGame();
-                endGameFragment.dismiss();
-            }
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        newGame();
+                    }
+                })
+                .setNegativeButton(R.string.exit_game, new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onExitGame() {
-                endGameFragment.dismiss();
-
-                getActivity().finish();
-
-            }
-        });
-        endGameFragment.show(fm, "frame_edit_text");
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        getActivity().finish();
+                    }
+                }).show();
     }
 
     private boolean isBoardFull() {
@@ -114,6 +121,8 @@ public class GameFragment extends Fragment {
 
     private boolean hasWin() {
         if (checkDiagonalsForWin()) {
+            mCrossLineView.setVisibility(View.VISIBLE);
+            mCrossLineView.invalidate();
             return true;
         } else if (checkRowsForWin()) {
             return true;
@@ -144,11 +153,11 @@ public class GameFragment extends Fragment {
     }
 
     private boolean winnerChecker(String result1, String result2) {
-        if (WINNER_X.equals(result1) || WINNER_X.equals(result2.toString())) {
-            winner = winner + " X";
+        if (WINNER_X.equals(result1) || WINNER_X.equals(result2)) {
+            winner = "X";
             return true;
-        } else if (WINNER_O.equals(result1.toString()) || WINNER_O.equals(result2.toString())) {
-            winner = winner + " O";
+        } else if (WINNER_O.equals(result1) || WINNER_O.equals(result2)) {
+            winner = "O";
             return true;
         }
         return false;
@@ -169,4 +178,5 @@ public class GameFragment extends Fragment {
         }
         return winnerChecker(resultTxt1.toString(), resultTxt2.toString());
     }
+
 }
