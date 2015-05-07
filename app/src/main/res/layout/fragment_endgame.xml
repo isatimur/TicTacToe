@@ -2,25 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <TextView
+        android:id="@+id/textResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Who won?"
-        android:id="@+id/textResult" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
+        android:id="@+id/newGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New game"
-        android:id="@+id/newGame" />
+        android:text="New game" />
 
     <Button
+        android:id="@+id/exitGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exit"
-        android:id="@+id/exitGame" />
+        android:text="Exit" />
 </LinearLayout>

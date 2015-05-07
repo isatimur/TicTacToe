@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameFragment"
-    tools:ignore="ResAuto"
     android:background="#C5CAE9"
-    android:gravity="center_vertical|center_horizontal">
+    android:gravity="center_vertical|center_horizontal"
+    tools:context=".GameFragment"
+    tools:ignore="ResAuto">
 
     <ru.isatimur.ttt.tictactoe.CellView
         android:id="@+id/ttt_cell0"
@@ -17,18 +17,18 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="-20dp"
         android:layout_toEndOf="@+id/ttt_cell0"
-        android:layout_toRightOf="@+id/ttt_cell0"
-        android:layout_marginLeft="-20dp" />
+        android:layout_toRightOf="@+id/ttt_cell0" />
 
     <ru.isatimur.ttt.tictactoe.CellView
         android:id="@+id/ttt_cell2"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="-20dp"
         android:layout_toEndOf="@+id/ttt_cell1"
-        android:layout_toRightOf="@+id/ttt_cell1"
-        android:layout_marginLeft="-20dp" />
+        android:layout_toRightOf="@+id/ttt_cell1" />
 
     <ru.isatimur.ttt.tictactoe.CellView
         android:id="@+id/ttt_cell3"
@@ -44,9 +44,9 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_below="@+id/ttt_cell1"
+        android:layout_marginTop="-20dp"
         android:layout_toLeftOf="@+id/ttt_cell2"
-        android:layout_toStartOf="@+id/ttt_cell2"
-        android:layout_marginTop="-20dp" />
+        android:layout_toStartOf="@+id/ttt_cell2" />
 
     <ru.isatimur.ttt.tictactoe.CellView
         android:id="@+id/ttt_cell5"
@@ -61,18 +61,18 @@
         android:id="@+id/ttt_cell6"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_below="@+id/ttt_cell3"
         android:layout_alignLeft="@+id/ttt_cell3"
         android:layout_alignStart="@+id/ttt_cell3"
+        android:layout_below="@+id/ttt_cell3"
         android:layout_marginTop="-20dp" />
 
     <ru.isatimur.ttt.tictactoe.CellView
         android:id="@+id/ttt_cell7"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_alignTop="@+id/ttt_cell6"
         android:layout_alignLeft="@+id/ttt_cell4"
-        android:layout_alignStart="@+id/ttt_cell4" />
+        android:layout_alignStart="@+id/ttt_cell4"
+        android:layout_alignTop="@+id/ttt_cell6" />
 
     <ru.isatimur.ttt.tictactoe.CellView
         android:id="@+id/ttt_cell8"

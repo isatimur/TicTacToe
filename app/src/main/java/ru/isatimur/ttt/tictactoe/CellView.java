@@ -2,18 +2,7 @@ package ru.isatimur.ttt.tictactoe;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
 
 /**
@@ -29,6 +18,7 @@ public class CellView extends ImageView {
     private int mNULLResource = R.drawable.mnull;
     private OnTouchListener touchListenDelegate = null;
     private CellState mState = CellState.MNULL;
+
     public CellView(Context context, AttributeSet attributes) {
         super(context, attributes);
         this.mContext = context.getApplicationContext();
@@ -36,7 +26,7 @@ public class CellView extends ImageView {
         mXResource = typedArray.getResourceId(R.styleable.CellView_xImage, R.drawable.x_white);
         mOResource = typedArray.getResourceId(R.styleable.CellView_oImage, R.drawable.o_white);
         mNULLResource = typedArray.getResourceId(R.styleable.CellView_mNullImage, R.drawable.mnull_white);
-         init();
+        init();
     }
 
     public CellState getState() {

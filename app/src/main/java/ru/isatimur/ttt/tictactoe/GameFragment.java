@@ -16,14 +16,14 @@ import android.widget.RelativeLayout;
 public class GameFragment extends Fragment {
 
     private static final int length = 9;
-    private CellView[] matrix = new CellView[length];
     private static final int N = 3;
     private static final String WINNER_X = "XXX";
     private static final String WINNER_O = "OOO";
+    View viewContainer;
+    private CellView[] matrix = new CellView[length];
     private String winner;
     private CrossLineView mCrossLineView;
     private boolean isFP = true;
-    View viewContainer;
     private final View.OnClickListener clickOnCell = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
