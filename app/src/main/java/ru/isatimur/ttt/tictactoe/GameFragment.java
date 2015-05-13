@@ -27,7 +27,6 @@ public class GameFragment extends Fragment {
     private final View.OnClickListener clickOnCell = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             CellView cellView = (CellView) v;
             if (cellView.getState() == CellView.CellState.MNULL) {
                 if (isFP) {
@@ -38,24 +37,22 @@ public class GameFragment extends Fragment {
                 v.setEnabled(false);
                 isFP = !isFP;
             }
-
             if (hasWin()) {
                 String text = "The winner is " + winner;
                 gameIsOver(text);
-                //return true;
             } else if (isBoardFull()) {
                 String text = "Game is over with draw!";
                 gameIsOver(text);
             }
         }
     };
+    private int[] lineMatrix = new int[8];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().supportInvalidateOptionsMenu();
         setHasOptionsMenu(true);
-
     }
 
     @Override
@@ -73,9 +70,13 @@ public class GameFragment extends Fragment {
             int id = getResources().getIdentifier("ttt_cell" + i, "id", getActivity().getPackageName());
             matrix[i] = (CellView) v.findViewById(id);
             matrix[i].setOnClickListener(clickOnCell);
-            mCrossLineView = (CrossLineView) v.findViewById(R.id.cross_line);
-            mCrossLineView.setVisibility(View.GONE);
+            if (i < 8) {
+                lineMatrix[i] = i;
+            }
         }
+        mCrossLineView = (CrossLineView) v.findViewById(R.id.cross_line);
+        mCrossLineView.setWidthView(matrix[0].getMeasuredWidth() * 1f);
+        mCrossLineView.setVisibility(View.GONE);
     }
 
     private void newGame() {
@@ -97,13 +98,11 @@ public class GameFragment extends Fragment {
                 .setMessage((winner.contains("X") ? R.string.win_x : ((!winner.contains("O")) ? R.string.win_draw : R.string.win_o)))
                 .setIcon((winner.contains("X") ? R.drawable.x_white : ((!winner.contains("O")) ? R.drawable.mnull_white : R.drawable.o_white)))
                 .setPositiveButton(R.string.new_game, new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int whichButton) {
                         newGame();
                     }
                 })
                 .setNegativeButton(R.string.exit_game, new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int whichButton) {
                         getActivity().finish();
                     }
@@ -121,8 +120,6 @@ public class GameFragment extends Fragment {
 
     private boolean hasWin() {
         if (checkDiagonalsForWin()) {
-            mCrossLineView.setVisibility(View.VISIBLE);
-            mCrossLineView.invalidate();
             return true;
         } else if (checkRowsForWin()) {
             return true;
@@ -144,20 +141,45 @@ public class GameFragment extends Fragment {
                 resultTxt1.append(result1[j].getState().name());
                 resultTxt2.append(result2[j].getState().name());
             }
-            if (winnerChecker(resultTxt1.toString(), resultTxt2.toString())) {
+            if (winnerChecker(resultTxt1.toString(), resultTxt2.toString(), i)) {
                 return true;
             }
         }
-
         return false;
     }
 
-    private boolean winnerChecker(String result1, String result2) {
+    private boolean winnerChecker(String result1, String result2, int lineNumber) {
+        if (WINNER_X.equals(result1) || WINNER_O.equals(result1)) {
+            if (lineNumber == -1) {
+                mCrossLineView.saveLinePoints(0, 8);
+            } else if (lineNumber == 0) {
+                mCrossLineView.saveLinePoints(0, 2);
+            } else if (lineNumber == 1) {
+                mCrossLineView.saveLinePoints(3, 5);
+            } else if (lineNumber == 2) {
+                mCrossLineView.saveLinePoints(6, 8);
+            }
+        } else if (WINNER_X.equals(result2) || WINNER_O.equals(result2)) {
+            if (lineNumber == -1) {
+                mCrossLineView.saveLinePoints(2, 6);
+            } else if (lineNumber == 0) {
+                mCrossLineView.saveLinePoints(0, 6);
+            } else if (lineNumber == 1) {
+                mCrossLineView.saveLinePoints(1, 7);
+            } else if (lineNumber == 2) {
+                mCrossLineView.saveLinePoints(2, 8);
+            }
+        }
+
         if (WINNER_X.equals(result1) || WINNER_X.equals(result2)) {
             winner = "X";
+            mCrossLineView.setVisibility(View.VISIBLE);
+            mCrossLineView.invalidate();
             return true;
         } else if (WINNER_O.equals(result1) || WINNER_O.equals(result2)) {
             winner = "O";
+            mCrossLineView.setVisibility(View.VISIBLE);
+            mCrossLineView.invalidate();
             return true;
         }
         return false;
@@ -176,7 +198,7 @@ public class GameFragment extends Fragment {
             resultTxt1.append(result1[i].getState().name());
             resultTxt2.append(result2[i].getState().name());
         }
-        return winnerChecker(resultTxt1.toString(), resultTxt2.toString());
+        return winnerChecker(resultTxt1.toString(), resultTxt2.toString(), -1);
     }
 
 }

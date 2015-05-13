@@ -2,6 +2,7 @@ package ru.isatimur.ttt.tictactoe;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -13,11 +14,12 @@ public class CellView extends ImageView {
     private static boolean isFP = true;
     private CellState state;
     private Context mContext;
-    private int mXResource = R.drawable.x;
-    private int mOResource = R.drawable.o;
-    private int mNULLResource = R.drawable.mnull;
+    private int mXResource = R.drawable.x_white;
+    private int mOResource = R.drawable.o_white;
+    private int mNULLResource = R.drawable.mnull_white;
     private OnTouchListener touchListenDelegate = null;
     private CellState mState = CellState.MNULL;
+    private Point currentPoint;
 
     public CellView(Context context, AttributeSet attributes) {
         super(context, attributes);
@@ -43,12 +45,14 @@ public class CellView extends ImageView {
             setEnabled(true);
         }
         this.state = state;
+
     }
 
     private void init() {
         setState(CellState.MNULL);
         this.setFocusable(true);
     }
+
 
     @Override
     public String toString() {

@@ -6,5 +6,4 @@
         <attr name="oImage" format="reference" />
         <attr name="mNullImage" format="reference" />
     </declare-styleable>
-
 </resources>
