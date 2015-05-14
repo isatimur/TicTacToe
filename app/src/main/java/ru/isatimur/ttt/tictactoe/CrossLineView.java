@@ -42,7 +42,7 @@ public class CrossLineView extends View {
         super.onDraw(canvas);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.YELLOW);
+        paint.setColor(Color.rgb(0, 188, 212));
         paint.setStrokeWidth(25f);
         float startPointI = 0f;
         float startPointJ = 0f;

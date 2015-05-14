@@ -14,9 +14,9 @@ public class CellView extends ImageView {
     private static boolean isFP = true;
     private CellState state;
     private Context mContext;
-    private int mXResource = R.drawable.x_white;
-    private int mOResource = R.drawable.o_white;
-    private int mNULLResource = R.drawable.mnull_white;
+    private int mXResource = R.drawable.x_pink;
+    private int mOResource = R.drawable.o_pink;
+    private int mNULLResource = R.drawable.mnull_pink;
     private OnTouchListener touchListenDelegate = null;
     private CellState mState = CellState.MNULL;
     private Point currentPoint;
@@ -25,9 +25,9 @@ public class CellView extends ImageView {
         super(context, attributes);
         this.mContext = context.getApplicationContext();
         TypedArray typedArray = context.obtainStyledAttributes(attributes, R.styleable.CellView, 0, 0);
-        mXResource = typedArray.getResourceId(R.styleable.CellView_xImage, R.drawable.x_white);
-        mOResource = typedArray.getResourceId(R.styleable.CellView_oImage, R.drawable.o_white);
-        mNULLResource = typedArray.getResourceId(R.styleable.CellView_mNullImage, R.drawable.mnull_white);
+        mXResource = typedArray.getResourceId(R.styleable.CellView_xImage, R.drawable.x_pink);
+        mOResource = typedArray.getResourceId(R.styleable.CellView_oImage, R.drawable.o_pink);
+        mNULLResource = typedArray.getResourceId(R.styleable.CellView_mNullImage, R.drawable.mnull_pink);
         init();
     }
 
