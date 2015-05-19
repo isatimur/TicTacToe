@@ -1,7 +1,195 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment"
-    android:name="ru.isatimur.ttt.tictactoe.GameFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout="@layout/fragment_game" />
+    tools:context=".TicTacToeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_top"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorPrimary"
+        android:elevation="@dimen/abc_action_bar_overflow_padding_start_material"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/container"
+            android:layout_centerHorizontal="true"
+            android:padding="0dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="25dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/x_pink" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textView2"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/o_pink" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/imageView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_alignTop="@+id/textView"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView3"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/imageView2"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/new_game"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_top"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical"
+        tools:context=".GameFragment"
+        tools:ignore="ResAuto">
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell0"
+            android:layout_width="120dp"
+            android:layout_height="120dp" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="-20dp"
+            android:layout_toEndOf="@+id/ttt_cell0"
+            android:layout_toRightOf="@+id/ttt_cell0" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="-20dp"
+            android:layout_toEndOf="@+id/ttt_cell1"
+            android:layout_toRightOf="@+id/ttt_cell1" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/ttt_cell0"
+            android:layout_marginTop="-20dp" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell4"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/ttt_cell1"
+            android:layout_marginTop="-20dp"
+            android:layout_toLeftOf="@+id/ttt_cell2"
+            android:layout_toStartOf="@+id/ttt_cell2" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell5"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignLeft="@+id/ttt_cell2"
+            android:layout_alignStart="@+id/ttt_cell2"
+            android:layout_below="@+id/ttt_cell2"
+            android:layout_marginTop="-20dp" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell6"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignLeft="@+id/ttt_cell3"
+            android:layout_alignStart="@+id/ttt_cell3"
+            android:layout_below="@+id/ttt_cell3"
+            android:layout_marginTop="-20dp" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell7"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignLeft="@+id/ttt_cell4"
+            android:layout_alignStart="@+id/ttt_cell4"
+            android:layout_alignTop="@+id/ttt_cell6" />
+
+        <ru.isatimur.ttt.tictactoe.CellView
+            android:id="@+id/ttt_cell8"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignLeft="@+id/ttt_cell5"
+            android:layout_alignStart="@+id/ttt_cell5"
+            android:layout_below="@+id/ttt_cell5"
+            android:layout_marginTop="-20dp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ttt_cell8"
+            android:layout_alignEnd="@id/ttt_cell8"
+            android:layout_alignStart="@id/ttt_cell0"
+            android:layout_alignTop="@+id/ttt_cell0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/ttt_cell8"
+            android:layout_toStartOf="@id/ttt_cell0">
+
+            <ru.isatimur.ttt.tictactoe.CrossLineView
+                android:id="@+id/cross_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

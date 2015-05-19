@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.isatimur.ttt.tictactoe">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TTTApplication"
         android:allowBackup="true"
@@ -16,6 +18,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings">
         </activity>
     </application>
 
